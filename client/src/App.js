@@ -29,9 +29,16 @@ function App() {
       limpiarCampos();
       Swal.fire({
         title: "<strong>Registro Exitoso!!!</strong>",
-        html: "<i>El empleado <strong>" + nombre + "</strong> fue registrado con exito!!!</i>",
+        html: "<i>El empleado <strong>" + nombre + "</strong> fue registrado con éxito!!!</i>",
         icon: "success",
         timer: 3000
+      });
+    }).catch((error) => {
+      Swal.fire({
+        title: "Error!",
+        text: "No se pudo registrar el empleado " + nombre + ".",
+        icon: "error",
+        footer: JSON.parse(JSON.stringify(error)).message === "Network Error" ? "Servidor no disponible, intente más tarde." : ""
       });
     });
   }
@@ -58,10 +65,17 @@ function App() {
       getEmpleado();
       limpiarCampos();
       Swal.fire({
-        title: "<strong>Actualizacion Exitoso!!!</strong>",
-        html: "<i>El empleado <strong>" + nombre + "</strong> fue actualizado con exito!!!</i>",
+        title: "<strong>Actualización Exitosa!!!</strong>",
+        html: "<i>El empleado <strong>" + nombre + "</strong> fue actualizado con éxito!!!</i>",
         icon: "success",
         timer: 3000
+      });
+    }).catch((error) => {
+      Swal.fire({
+        title: "Error!",
+        text: "No se pudo actualizar el empleado " + nombre + ".",
+        icon: "error",
+        footer: JSON.parse(JSON.stringify(error)).message === "Network Error" ? "Servidor no disponible, intente más tarde." : ""
       });
     });
   }
@@ -91,7 +105,7 @@ function App() {
             title: "Error!",
             text: "No se pudo eliminar el empleado " + val.nombre + ".",
             icon: "error",
-            footer: JSON.parse(JSON.stringify(error)).message=="Network Error"?"Servidor no disponible, intente mas tarde.":""
+            footer: JSON.parse(JSON.stringify(error)).message == "Network Error" ? "Servidor no disponible, intente mas tarde." : ""
           });
         });
       }
