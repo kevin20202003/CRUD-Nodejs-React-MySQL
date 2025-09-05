@@ -23,7 +23,7 @@ app.post('/create', (req, res) => {
                 console.log(err);
                 res.status(500).send("Error inserting values");
             } else {
-                res.send("Values Inserted");
+                res.send(result);
             }
         });
 });
@@ -49,10 +49,25 @@ app.put('/update', (req, res) => {
                 console.log(err);
                 res.status(500).send("Error inserting values");
             } else {
-                res.send("Values Updated");
+                res.send(result);
             }
         });
 });
+
+app.delete('/delete/:id', (req, res) => {
+    const id = req.params.id;
+
+    db.query('DELETE FROM empleados WHERE id=?', id,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Error delete values");
+            } else {
+                res.send(result);
+            }
+        });
+});
+
 
 app.listen(3001, () => {
     console.log("Server running on port 3001");
