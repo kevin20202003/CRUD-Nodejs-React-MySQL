@@ -91,7 +91,7 @@ function App() {
             title: "Error!",
             text: "No se pudo eliminar el empleado " + val.nombre + ".",
             icon: "error",
-            timer: 3000
+            footer: JSON.parse(JSON.stringify(error)).message=="Network Error"?"Servidor no disponible, intente mas tarde.":""
           });
         });
       }
